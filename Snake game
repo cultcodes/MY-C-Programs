@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<windows.h>
+#include<time.h>
+//snake game
+void delay(double sec){
+  int milli_seconds=1000*sec;
+  clock_t start=clock();
+  while(clock()<start+milli_seconds); //empty loop
+}
+
+void gotoxy( short int x, short int y){
+  COORD pos;
+  pos.X=x;
+  pos.Y=y;
+  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+int main(){
+int x,y;
+x=10;y=5;
+printf("Welcome to a new GAME:\n");
+
+while(1){
+  delay(0.03);
+  gotoxy(x,y);
+  printf("*");
+  if(x<60 && y==5)x++;
+  if(x>=60 && y<25)y++;
+  if(x>10 && y==25)x--;
+  if(x==10 && y>5)y--;
+  if(x==10 && y==5)break;
+}
+
+
+return 0;
+}
